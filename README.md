@@ -1,5 +1,7 @@
 # Compressed Sparse Fiber Matrix
 
+## Work in progress!
+
 CSF Matrix is a read-only sparse matrix class optimized for sparse-dense computation in cases where non-zero values are highly redundant. For such cases, sparse fiber storage can reduce memory footprint by up to 50% compared to standard sparse compression. CSF also increases the ability to further compress index arrays within each fiber.
 
 ## What is CSF?
