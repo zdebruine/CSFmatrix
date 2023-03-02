@@ -43,7 +43,7 @@ v = {1, 0, 6, 10, 11, 13, 0, 2, 4, 9};
 // value    indices  delimiter value indices
 ```
 
-We refer to each index run (+ delimiter if applicable) as a **fiber**.
+Each index run is a **fiber**. Fibers may be compressed using compression filters for integer arrays. 
 
 ## Random Access is Unordered
 
@@ -57,7 +57,8 @@ Unlike CSC, where values in any column are ordered by row index, CSF values are 
 The `CSFmatrix::SparseMatrix<T_value, T_index, compression_level>` class feels a lot like an `Eigen::SparseMatrix`. There are three compression levels:
  1. Column Sparse Compressed (CSC) format
  2. Column Sparse Fiber (CSF) format
- 3. CSF + positive-delta encoding and bytepacking of indices in fibers
+ 3. CSF + positive-delta encoding and bytepacking of indices in fibers (directly traversable)
+ 4. #3 + compression of fibers (requires automated decompression to traverse)
  
 Use compression level 1 if performing many sparse-sparse column-wise operations or if non-zero values are not highly redundant. Use compression level 3 if slightly compromised random access speed is acceptable for another significant reduction in memory footprint.
 
